@@ -1,0 +1,17 @@
+{
+  "name": "ww-image-upload",
+  "version": "1.0.0",
+  "description": "WeWeb Image Upload Component with preview and validation",
+  "scripts": {
+    "build": "weweb build",
+    "serve": "weweb serve"
+  },
+  "keywords": [
+    "weweb",
+    "component",
+    "image",
+    "upload",
+    "file"
+  ],
+  "devDependencies": {}
+}
