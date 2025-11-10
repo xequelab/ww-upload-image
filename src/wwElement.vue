@@ -77,9 +77,16 @@
         <button
           class="action-button change-button"
           :style="changeButtonStyle"
-          @click="triggerFileInput"
+          @click="handleChangeImage"
         >
           {{ changeImageButtonLabel }}
+        </button>
+        <button
+          class="action-button save-button"
+          :style="saveButtonStyle"
+          @click="handleSave"
+        >
+          {{ saveButtonLabel }}
         </button>
       </div>
     </div>
@@ -432,6 +439,26 @@ export default {
       });
     };
 
+    const handleChangeImage = () => {
+      if (isEditing.value || isDisabled.value) return;
+      fileInput.value?.click();
+    };
+
+    const handleSave = () => {
+      if (isEditing.value) return;
+
+      emit('trigger-event', {
+        name: 'imageSaved',
+        event: {
+          fileName: fileName.value,
+          fileSize: fileSize.value,
+          fileType: fileType.value,
+          dataUrl: selectedImage.value,
+          fileData: fileData.value
+        }
+      });
+    };
+
     const clearImage = () => {
       handleCancel();
       return true;
@@ -468,6 +495,7 @@ export default {
       showUploadIcon,
       cancelButtonLabel,
       changeImageButtonLabel,
+      saveButtonLabel: computed(() => props.content?.saveButtonLabel || 'Save'),
 
       // Styles
       uploadAreaStyle,
@@ -479,6 +507,13 @@ export default {
       actionButtonsStyle,
       cancelButtonStyle,
       changeButtonStyle,
+      saveButtonStyle: computed(() => ({
+        backgroundColor: props.content?.saveButtonBackgroundColor || '#48bb78',
+        color: props.content?.saveButtonTextColor || '#ffffff',
+        padding: props.content?.buttonPadding || '10px 20px',
+        borderRadius: props.content?.buttonBorderRadius || '6px',
+        fontSize: props.content?.buttonFontSize || '14px'
+      })),
       errorMessageStyle,
 
       // Methods
@@ -488,6 +523,8 @@ export default {
       handleDragLeave,
       handleDrop,
       handleCancel,
+      handleChangeImage,
+      handleSave,
       clearImage
     };
   }

@@ -23,6 +23,17 @@ export default {
       default: true
     },
     {
+      name: 'imageSaved',
+      label: { en: 'On image saved', pt: 'Ao salvar imagem' },
+      event: {
+        fileName: '',
+        fileSize: 0,
+        fileType: '',
+        dataUrl: '',
+        fileData: null
+      }
+    },
+    {
       name: 'imageRemoved',
       label: { en: 'On image removed', pt: 'Ao remover imagem' },
       event: {}
@@ -258,6 +269,16 @@ export default {
       defaultValue: 'Change Image',
       options: {
         placeholder: 'Change'
+      }
+    },
+    saveButtonLabel: {
+      label: { en: 'Save Button Label', pt: 'Texto Botão Salvar' },
+      type: 'Text',
+      section: 'settings',
+      bindable: true,
+      defaultValue: 'Save',
+      options: {
+        placeholder: 'Save'
       }
     },
 
@@ -506,6 +527,26 @@ export default {
     },
     changeButtonTextColor: {
       label: { en: 'Change Button Text Color', pt: 'Cor Texto Trocar' },
+      type: 'Color',
+      section: 'style',
+      bindable: true,
+      defaultValue: '#ffffff',
+      options: {
+        nullable: true
+      }
+    },
+    saveButtonBackgroundColor: {
+      label: { en: 'Save Button Background', pt: 'Fundo Botão Salvar' },
+      type: 'Color',
+      section: 'style',
+      bindable: true,
+      defaultValue: '#48bb78',
+      options: {
+        nullable: true
+      }
+    },
+    saveButtonTextColor: {
+      label: { en: 'Save Button Text Color', pt: 'Cor Texto Salvar' },
       type: 'Color',
       section: 'style',
       bindable: true,
