@@ -64,32 +64,32 @@
         <div class="image-name">{{ fileName }}</div>
         <div class="image-size">{{ formattedFileSize }}</div>
       </div>
+    </div>
 
-      <!-- Action Buttons -->
-      <div class="action-buttons" :style="actionButtonsStyle">
-        <button
-          class="action-button cancel-button"
-          :style="cancelButtonStyle"
-          @click="handleCancel"
-        >
-          {{ cancelButtonLabel }}
-        </button>
-        <button
-          class="action-button change-button"
-          :style="changeButtonStyle"
-          @click="handleChangeImage"
-        >
-          {{ changeImageButtonLabel }}
-        </button>
-        <button
-          v-if="showSaveButton"
-          class="action-button save-button"
-          :style="saveButtonStyle"
-          @click="handleSave"
-        >
-          {{ saveButtonLabel }}
-        </button>
-      </div>
+    <!-- Action Buttons (shown when image is selected, regardless of preview) -->
+    <div v-if="selectedImage" class="action-buttons" :style="actionButtonsStyle">
+      <button
+        class="action-button cancel-button"
+        :style="cancelButtonStyle"
+        @click="handleCancel"
+      >
+        {{ cancelButtonLabel }}
+      </button>
+      <button
+        class="action-button change-button"
+        :style="changeButtonStyle"
+        @click="handleChangeImage"
+      >
+        {{ changeImageButtonLabel }}
+      </button>
+      <button
+        v-if="showSaveButton"
+        class="action-button save-button"
+        :style="saveButtonStyle"
+        @click="handleSave"
+      >
+        {{ saveButtonLabel }}
+      </button>
     </div>
 
     <!-- Error Message -->
@@ -633,30 +633,31 @@ export default {
         color: #718096;
       }
     }
+  }
 
-    .action-buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
 
-      .action-button {
-        border: none;
-        cursor: pointer;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        outline: none;
-        white-space: nowrap;
+    .action-button {
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      outline: none;
+      white-space: nowrap;
 
-        &:hover {
-          opacity: 0.9;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+      &:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-        &:active {
-          transform: translateY(0);
-        }
+      &:active {
+        transform: translateY(0);
       }
     }
   }
