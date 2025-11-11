@@ -1,5 +1,14 @@
 <template>
   <div class="image-upload-component">
+    <!-- Hidden File Input (always present) -->
+    <input
+      ref="fileInput"
+      type="file"
+      :accept="acceptAttribute"
+      class="file-input"
+      @change="handleFileSelect"
+    />
+
     <!-- Upload Area (shown when no image) -->
     <div
       v-if="!selectedImage"
@@ -36,15 +45,6 @@
       <div v-if="uploadAreaSubtext" class="upload-subtext" :style="uploadSubtextStyle">
         {{ uploadAreaSubtext }}
       </div>
-
-      <!-- Hidden File Input -->
-      <input
-        ref="fileInput"
-        type="file"
-        :accept="acceptAttribute"
-        class="file-input"
-        @change="handleFileSelect"
-      />
     </div>
 
     <!-- Preview Area (shown when image is selected) -->
