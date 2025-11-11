@@ -249,6 +249,22 @@ export default {
       }
       /* wwEditor:end */
     },
+    showSaveButton: {
+      label: { en: 'Show Save Button', pt: 'Mostrar Botão Salvar' },
+      type: 'OnOff',
+      section: 'settings',
+      bindable: true,
+      defaultValue: true,
+      /* wwEditor:start */
+      bindingValidation: {
+        type: 'boolean',
+        tooltip: 'Show or hide the save button'
+      },
+      propertyHelp: {
+        tooltip: 'Toggle visibility of the Save button in the preview area'
+      }
+      /* wwEditor:end */
+    },
 
     // Button Labels
     cancelButtonLabel: {

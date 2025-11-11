@@ -82,6 +82,7 @@
           {{ changeImageButtonLabel }}
         </button>
         <button
+          v-if="showSaveButton"
           class="action-button save-button"
           :style="saveButtonStyle"
           @click="handleSave"
@@ -493,6 +494,7 @@ export default {
       uploadAreaText,
       uploadAreaSubtext,
       showUploadIcon,
+      showSaveButton: computed(() => props.content?.showSaveButton !== false),
       cancelButtonLabel,
       changeImageButtonLabel,
       saveButtonLabel: computed(() => props.content?.saveButtonLabel || 'Save'),
