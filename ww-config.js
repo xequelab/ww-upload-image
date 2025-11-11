@@ -265,6 +265,22 @@ export default {
       }
       /* wwEditor:end */
     },
+    showPreview: {
+      label: { en: 'Show Preview', pt: 'Mostrar Prévia' },
+      type: 'OnOff',
+      section: 'settings',
+      bindable: true,
+      defaultValue: true,
+      /* wwEditor:start */
+      bindingValidation: {
+        type: 'boolean',
+        tooltip: 'Show or hide the image preview after upload'
+      },
+      propertyHelp: {
+        tooltip: 'When disabled, the upload area remains visible after selecting an image'
+      }
+      /* wwEditor:end */
+    },
 
     // Button Labels
     cancelButtonLabel: {

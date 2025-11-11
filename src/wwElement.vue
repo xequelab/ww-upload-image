@@ -9,9 +9,9 @@
       @change="handleFileSelect"
     />
 
-    <!-- Upload Area (shown when no image) -->
+    <!-- Upload Area (shown when no image OR when preview is disabled) -->
     <div
-      v-if="!selectedImage"
+      v-if="!selectedImage || !showPreview"
       class="upload-area"
       :class="{ 'is-dragging': isDragging, 'is-disabled': isDisabled }"
       :style="uploadAreaStyle"
@@ -47,8 +47,8 @@
       </div>
     </div>
 
-    <!-- Preview Area (shown when image is selected) -->
-    <div v-else class="preview-area">
+    <!-- Preview Area (shown when image is selected AND preview is enabled) -->
+    <div v-if="selectedImage && showPreview" class="preview-area">
       <!-- Image Preview -->
       <div class="image-preview-container" :style="previewContainerStyle">
         <img
@@ -495,6 +495,7 @@ export default {
       uploadAreaSubtext,
       showUploadIcon,
       showSaveButton: computed(() => props.content?.showSaveButton !== false),
+      showPreview: computed(() => props.content?.showPreview !== false),
       cancelButtonLabel,
       changeImageButtonLabel,
       saveButtonLabel: computed(() => props.content?.saveButtonLabel || 'Save'),
