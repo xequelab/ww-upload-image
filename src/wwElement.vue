@@ -538,6 +538,15 @@ export default {
   width: 100%;
   gap: 16px;
 
+  .file-input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
   .upload-area {
     display: flex;
     flex-direction: column;
@@ -555,10 +564,6 @@ export default {
     &.is-disabled {
       cursor: not-allowed;
       opacity: 0.6;
-    }
-
-    .file-input {
-      display: none;
     }
 
     .upload-icon {
