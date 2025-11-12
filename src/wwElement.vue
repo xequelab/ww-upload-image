@@ -71,15 +71,15 @@
         />
       </div>
 
-      <!-- Image Info -->
-      <div class="image-info">
+      <!-- Image Info (only shown if fileName exists) -->
+      <div v-if="fileName" class="image-info">
         <div class="image-name">{{ fileName }}</div>
         <div class="image-size">{{ formattedFileSize }}</div>
       </div>
     </div>
 
-    <!-- Action Buttons for uploaded image (shown when image is selected, regardless of preview) -->
-    <div v-if="selectedImage" class="action-buttons" :style="actionButtonsStyle">
+    <!-- Action Buttons for uploaded image (shown when image is selected AND fileName exists) -->
+    <div v-if="selectedImage && fileName" class="action-buttons" :style="actionButtonsStyle">
       <button
         class="action-button cancel-button"
         :style="cancelButtonStyle"
@@ -104,8 +104,8 @@
       </button>
     </div>
 
-    <!-- Action Button for default image (shown when only default image exists) -->
-    <div v-if="!selectedImage && defaultImageUrl" class="action-buttons" :style="actionButtonsStyle">
+    <!-- Action Button for saved/default image (shown when image exists but no fileName - saved state OR default image) -->
+    <div v-if="(selectedImage && !fileName) || (!selectedImage && defaultImageUrl)" class="action-buttons" :style="actionButtonsStyle">
       <button
         class="action-button change-button"
         :style="changeButtonStyle"
@@ -490,6 +490,13 @@ export default {
           fileData: fileData.value
         }
       });
+
+      // Limpa apenas os metadados, mantém a imagem em selectedImage
+      setFileName('');
+      setFileSize(0);
+      setFileType('');
+      setFileData(null);
+      errorMessage.value = '';
     };
 
     const clearImage = () => {
