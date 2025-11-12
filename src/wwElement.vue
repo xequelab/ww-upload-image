@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <!-- Action Buttons (shown when image is selected, regardless of preview) -->
+    <!-- Action Buttons for uploaded image (shown when image is selected, regardless of preview) -->
     <div v-if="selectedImage" class="action-buttons" :style="actionButtonsStyle">
       <button
         class="action-button cancel-button"
@@ -101,6 +101,17 @@
         @click="handleSave"
       >
         {{ saveButtonLabel }}
+      </button>
+    </div>
+
+    <!-- Action Button for default image (shown when only default image exists) -->
+    <div v-if="!selectedImage && defaultImageUrl" class="action-buttons" :style="actionButtonsStyle">
+      <button
+        class="action-button change-button"
+        :style="changeButtonStyle"
+        @click="handleChangeImage"
+      >
+        {{ changeImageButtonLabel }}
       </button>
     </div>
 
