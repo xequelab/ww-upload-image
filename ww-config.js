@@ -281,6 +281,25 @@ export default {
       }
       /* wwEditor:end */
     },
+    defaultImageUrl: {
+      label: { en: 'Default Image URL', pt: 'URL da Imagem Padrão' },
+      type: 'Text',
+      section: 'settings',
+      bindable: true,
+      defaultValue: '',
+      options: {
+        placeholder: 'https://example.com/default-image.jpg'
+      },
+      /* wwEditor:start */
+      bindingValidation: {
+        type: 'string',
+        tooltip: 'URL of the image to display when no image is uploaded'
+      },
+      propertyHelp: {
+        tooltip: 'Optional: Display a default image when the user has not uploaded any image yet'
+      }
+      /* wwEditor:end */
+    },
 
     // Button Labels
     cancelButtonLabel: {

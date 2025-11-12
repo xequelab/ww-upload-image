@@ -9,9 +9,21 @@
       @change="handleFileSelect"
     />
 
+    <!-- Default Image Preview (shown when no upload but default URL exists) -->
+    <div v-if="!selectedImage && defaultImageUrl && showPreview" class="preview-area">
+      <div class="image-preview-container" :style="previewContainerStyle">
+        <img
+          :src="defaultImageUrl"
+          alt="Default image"
+          class="image-preview"
+          :style="previewImageStyle"
+        />
+      </div>
+    </div>
+
     <!-- Upload Area (shown when no image OR when preview is disabled) -->
     <div
-      v-if="!selectedImage || !showPreview"
+      v-if="(!selectedImage && !defaultImageUrl) || (!selectedImage && !showPreview)"
       class="upload-area"
       :class="{ 'is-dragging': isDragging, 'is-disabled': isDisabled }"
       :style="uploadAreaStyle"
@@ -176,6 +188,15 @@ export default {
     });
 
     // Computed Properties
+    const defaultImageUrl = computed(() => props.content?.defaultImageUrl || '');
+
+    const displayImage = computed(() => {
+      if (selectedImage.value) {
+        return selectedImage.value;
+      }
+      return defaultImageUrl.value;
+    });
+
     const acceptAttribute = computed(() => {
       const format = props.content?.acceptedFormats || 'image/*';
       if (format === 'custom') {
@@ -491,6 +512,8 @@ export default {
 
       // Computed
       acceptAttribute,
+      defaultImageUrl,
+      displayImage,
       uploadAreaText,
       uploadAreaSubtext,
       showUploadIcon,
